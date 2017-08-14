@@ -10,7 +10,7 @@ fi
 
 echo "registering account"
 THUMBPRINT=`acme.sh --register-account | grep "'.*'" | sed -n " s,[^']*'\([^']*\).*,\1,p "`
-echo "registered; received thumbpring: $THUMBPRINT"
+echo "registered; received thumbprint: $THUMBPRINT"
 
 echo "updating nginx config"
 echo "server {
