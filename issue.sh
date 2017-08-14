@@ -1,5 +1,13 @@
 #!/bin/sh
 
+DOMAIN=$1
+
+if [$DOMAIN = ""]; then
+  echo "first argument (domain name) must be specified"
+  exit 1
+fi
+
+
 echo "registering account"
 THUMBPRINT=`acme.sh --register-account | grep "'.*'" | sed -n " s,[^']*'\([^']*\).*,\1,p "`
 echo "registered; received thumbpring: $THUMBPRINT"
@@ -15,5 +23,5 @@ echo "server {
 echo "reloading nginx"
 nginx -s reload
 
-echo "issuing certificate"
-acme.sh --issue -d www.knejzlik.cz  --stateless
+echo "issuing certificate for $DOMAIN"
+acme.sh --issue -d $DOMAIN --stateless
