@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo "registering account"
 THUMBPRINT=`acme.sh --register-account | grep "'.*'" | sed -n " s,[^']*'\([^']*\).*,\1,p "`
 echo "registered; received thumbpring: $THUMBPRINT"
